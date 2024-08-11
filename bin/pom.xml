@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>in.rajiv</groupId>
 	<artifactId>01_ReportApp-2</artifactId>
-	<version>0.0.1-RELEASE</version>
+	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 	<name>01_ReportApp-2</name>
 	<description>Demo project for Spring Boot</description>

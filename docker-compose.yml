@@ -1,0 +1,16 @@
+version: "1"
+services:
+  application:
+    image: rajiv84iya/report-app
+    networks:
+      - springboot-db-networks
+    ports:
+      - 8090:8080
+    environment:
+      SPRING_DATASOURCE_URL: mysql://database.cb2m8ekc806k.ap-south-1.rds.amazonaws.com:3306/report
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: Rajiv84ia
+    volumes:
+      - /data/springboot-app:/app
+networks:
+  springboot-db-networks:
