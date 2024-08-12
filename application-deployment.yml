@@ -17,8 +17,8 @@ spec:
         app: javawebapp
     spec:
       containers:
-      - name: javawebappContainer
-        images: rajiv84iya/report-app
+      - name: javawebappcontainer
+        image: rajiv84iya/report-app
         ports:
           - containerPort: 8080
 ...
