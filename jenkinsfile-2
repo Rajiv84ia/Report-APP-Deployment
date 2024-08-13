@@ -1,0 +1,18 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('git clone') {
+            steps {
+                git credentialsId: 'git', url: 'https://github.com/Rajiv84ia/Report-APP-Deployment.git'
+            }
+        }
+        stage('Deploy'){
+            steps{
+                sh 'kubectl apply -f application-deployment.yml'
+                sh 'kubectl apply -f service.yml'
+            }
+        }
+    }
+}
+

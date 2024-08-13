@@ -1,0 +1,47 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('git clonning') {
+            steps {
+                git credentialsId: 'git', url: 'https://github.com/Rajiv84ia/Report-APP-Deployment.git'
+            }
+        }
+        stage('compile code'){
+            steps{
+                sh 'mvn compile'
+            }
+        }
+        stage('Sonar-Scanner'){
+            steps{
+                withSonarQubeEnv('sonar'){
+                    sh 'mvn sonar:sonar'
+                }
+            }
+        }
+        stage('maven Build'){
+            steps{
+                sh 'mvn clean package'
+            }
+        }
+        stage('Build image'){
+            steps{
+                sh 'docker build -t rajiv84iya/report-app .'
+            }
+        }
+        stage('push image to Dockerhub'){
+            steps{
+                withCredentials([string(credentialsId: 'docker', variable: 'dockerpwd')]) {
+                    sh 'docker login -u rajiv84iya -p $dockerpwd'
+                    sh 'docker push rajiv84iya/report-app'
+                }
+            }
+        }
+        stage('CD job'){
+            steps{
+                build 'CD for Report app'
+            }
+        }
+    }
+}
+
