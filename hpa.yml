@@ -1,0 +1,14 @@
+---
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: hpafrontend
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: javawebappdeployment
+  minReplicas: 1
+  maxReplicas: 100
+  targetCPUUtilizationPercentage: 50
+...
